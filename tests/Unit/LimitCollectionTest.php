@@ -41,7 +41,7 @@ class LimitCollectionTest extends TestCase
     public function testAppend(CustomLimitCollection $collection): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Collection is full.");
+        $this->expectExceptionMessage("Invalid count of elements.");
 
         $collection->append(new \stdClass());
     }
@@ -54,7 +54,7 @@ class LimitCollectionTest extends TestCase
     public function testOffsetSet(CustomLimitCollection $collection): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Collection is full.");
+        $this->expectExceptionMessage("Invalid count of elements.");
 
         $collection["someKey"] = new \stdClass();
     }
