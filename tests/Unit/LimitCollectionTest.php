@@ -66,16 +66,22 @@ class LimitCollectionTest extends TestCase
      */
     public function testExchangeArray(CustomLimitCollection $collection): void
     {
+        $data = [
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+        ];
+        $collection->exchangeArray($data);
+
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid count of elements.");
 
-        $collection->exchangeArray([
-            new \stdClass(),
-            new \stdClass(),
-            new \stdClass(),
-            new \stdClass(),
-            new \stdClass(),
-            new \stdClass(),
-        ]);
+        $collection->exchangeArray(
+            $data + [
+                new \stdClass(),
+                new \stdClass(),
+            ]
+        );
     }
 }
