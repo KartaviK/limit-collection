@@ -67,7 +67,7 @@ class LimitCollectionTest extends TestCase
     public function testExchangeArray(CustomLimitCollection $collection): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Collection is full.");
+        $this->expectExceptionMessage("Invalid count of elements.");
 
         $collection->exchangeArray([
             new \stdClass(),
