@@ -23,21 +23,25 @@ abstract class LimitCollection extends BaseCollection
 
     public function append($value): BaseCollection
     {
-        $this->validateCount();
+        if ($this->isFull()) {
+            throw new \InvalidArgumentException("Invalid count of elements.");
+        }
 
         return parent::append($value);
     }
 
     public function exchangeArray($input): array
     {
-        $this->validateCount();
+        $this->validateCount($input);
 
         return parent::exchangeArray($input);
     }
 
     public function offsetSet($index, $value): BaseCollection
     {
-        $this->validateCount();
+        if ($this->isFull()) {
+            throw new \InvalidArgumentException("Invalid count of elements.");
+        }
 
         return parent::offsetSet($index, $value);
     }
@@ -49,7 +53,7 @@ abstract class LimitCollection extends BaseCollection
 
     protected function validateCount($elements = []): void
     {
-        if ((!empty($elements) && $elements > $this->limit()) || $this->isFull()) {
+        if (\count($elements) > $this->limit()) {
             throw new \InvalidArgumentException("Invalid count of elements.");
         }
     }

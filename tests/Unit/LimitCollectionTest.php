@@ -77,11 +77,13 @@ class LimitCollectionTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid count of elements.");
 
-        $collection->exchangeArray(
-            $data + [
-                new \stdClass(),
-                new \stdClass(),
-            ]
-        );
+        $collection->exchangeArray([
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+            new \stdClass(),
+        ]);
     }
 }
